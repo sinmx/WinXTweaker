@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "WXT.h"
-#include "CI.h"
+#include "Header_Files/WXT.h"
+#include "Header_Files/CI.h"
 #include <iostream>
 #include <string>
 #include <Windows.h>

@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "CI.h"
-#include "WXT.h"
-#include "Tweaks.h"
+#include "Header_Files/CI.h"
+#include "Header_Files/WXT.h"
+#include "Header_Files/Tweaks.h"
 #include "Library/WinReg.hpp"
 #include <Windows.h>
 #include <stdlib.h>

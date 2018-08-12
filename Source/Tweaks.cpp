@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Tweaks.h"
+#include "Header_Files/Tweaks.h"
 //Thanks to Giovanni Dicanio for his library!
 #include "Library/WinReg.hpp"
 #include <iostream>
