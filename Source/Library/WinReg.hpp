@@ -792,7 +792,7 @@ inline DWORD RegKey::GetDwordValue(const std::wstring& valueName)
     );
     if (retCode != ERROR_SUCCESS)
     {
-		return retCode;
+		return 2;
     }
 	else {
 		return data;
