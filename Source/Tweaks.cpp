@@ -28,8 +28,15 @@ void Tweaks::Tweak_Handler(string name,char EnableOrDisable) {
 		}
 		
 	}
-	//Put here your if - else statements
-	//else if
+	//Increase taskbar transparency
+	else if (name == "UseOLEDTaskbarTransparency") {
+		if (EnableOrDisable == 'e') {
+			UseOLEDTaskbarTransparency('e');
+		}
+		else {
+			UseOLEDTaskbarTransparency('d');
+		}
+	}
 }
 
 
@@ -58,5 +65,20 @@ void Tweaks::Toggle_Seconds_System_Clock(char options)
 		key.SetDwordValue(L"ShowSecondsInSystemClock", 0);
 	}
 	
+}
+
+void Tweaks::UseOLEDTaskbarTransparency(char options){
+	if (options == 'e') {
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)" };
+		key.SetDwordValue(L"UseOLEDTaskbarTransparency", 1);
+	}
+	else if (options == 'd') {
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)" };
+		key.SetDwordValue(L"UseOLEDTaskbarTransparency", 0);
+	}
 }
 

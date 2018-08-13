@@ -92,6 +92,7 @@ void CI::UIInterface() {
 	cout << "| E: Exit WXT                                               |" << endl;
 	cout << "| 0: Return to Main Menu                                    |" << endl;
 	cout << "| 1: View or Hide seconds in System clock (RESTART REQUIRED)|" << endl;
+	cout << "| 2: Increase Taskbar Transparency Level (RESTART REQUIRED) |" << endl;
 	cout << "|-----------------------------------------------------------|" << endl << endl;
 
 	//Integer to store choice
@@ -103,7 +104,7 @@ void CI::UIInterface() {
 	cout << endl;
 
 	//Handles Choice
-	switch (Choice) {
+	switch (Choice){
 	case 'E':
 		exit(0);
 		break;
@@ -114,36 +115,75 @@ void CI::UIInterface() {
 		break;
 
 	case '1':
-		//SecondsIn
+	{
+		//Show Seconds In System Clock
 		//Check if tweak is already enabled(getting the DWORD value from the registry),Winreg library <3
-		
-			RegKey key{
-				HKEY_CURRENT_USER,
-				LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)"
-			};
-			DWORD dwor = key.GetDwordValue(L"ShowSecondsInSystemClock");
-			cout << dwor;
-			if (dwor == 2) {
-				key.SetDwordValue(L"ShowSecondsInSystemClock", 0);
-				dwor = 0;
-			}
-			
-		
+
+		RegKey key{
+			HKEY_CURRENT_USER,
+			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)"
+		};
+		DWORD dwor = key.GetDwordValue(L"ShowSecondsInSystemClock");
+		cout << dwor;
+		if (dwor == 2) {
+			key.SetDwordValue(L"ShowSecondsInSystemClock", 0);
+			dwor = 0;
+		}
+
+
 
 		//Sets status according to the DWORD(dw) value
-		if(dwor == 0){
+		if (dwor == 0) {
 			Tweak_Status = "Disabled";
 		}
-		else if (dwor== 1) {
+		else if (dwor == 1) {
 			Tweak_Status = "Enabled";
 		}
 		else {
 			throw "An error occured while reading the registry key.";
 		}
-		
+
 		//Calls GTweakInterface,extra comments are not required so not given
 		GTweakInterface("Toggle_Seconds_System_Clock", Tweak_Status);
+	}
 		break;
+
+	case '2':
+	{
+		//Increase Taskbar transparency
+		//Check if tweak is already enabled(getting the DWORD value from the registry),Winreg library <3
+
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)"
+		};
+		
+		DWORD dwor = key.GetDwordValue(L"UseOLEDTaskbarTransparency");
+		cout << dwor;
+		if (dwor == 2) {
+			key.SetDwordValue(L"UseOLEDTaskbarTransparency", 0);
+			dwor = 0;
+		}
+
+
+
+		//Sets status according to the DWORD(dw) value
+		if (dwor == 0) {
+			Tweak_Status = "Disabled";
+		}
+		else if (dwor == 1) {
+			Tweak_Status = "Enabled";
+		}
+		else {
+			throw "An error occured while reading the registry key.";
+		}
+
+		//Calls GTweakInterface,extra comments are not required so not given
+		GTweakInterface("UseOLEDTaskbarTransparency", Tweak_Status);
+		break;
+	}
+		
+
 	}
 }
 

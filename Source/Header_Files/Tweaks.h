@@ -12,4 +12,7 @@ public:
 
 	//Enable/Disable Seconds in System Clock
 	void Toggle_Seconds_System_Clock(char options = 'e');
+
+	//Increase taskbar transparency
+	void UseOLEDTaskbarTransparency(char options = 'e');
 };
