@@ -159,10 +159,10 @@
     <ClCompile Include="WXT.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
+    <ResourceCompile Include="Resources\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resources\Resource.rc" />
+    <Image Include="Resources\WXT.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
