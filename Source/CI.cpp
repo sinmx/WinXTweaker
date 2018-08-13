@@ -41,7 +41,7 @@ void CI::StartupInterface()
 	cout << "|               Main Menu               |"<< endl;
 	cout << "-----------------------------------------" << endl;
 	cout << "| 0: Exit                               |" << endl;
-    cout << "| 1: UI Tweaks                          |" << endl;
+        cout << "| 1: UI Tweaks                          |" << endl;
 	cout << "|---------------------------------------|" << endl << endl;
 
 	//Integer to store choice
