@@ -1,5 +1,5 @@
 # WinXTweaker
-# Version 0.1
+# Version 0.2(Executables in the _Releases_ tab)
 
 ## An introduction/story
  We all now the Windows OS(perhaps you're maybe reading this sentence on it).  
