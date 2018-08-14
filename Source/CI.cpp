@@ -33,7 +33,7 @@ void CI::StartupInterface()
 	/*Colors the text*/SetConsoleTextAttribute(hConsole, 4);
 	cout << "///////////////////////////////////////////////////" << endl;
 	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.1 ALPHA" << endl << "//" << endl;
+	cout << "// Version 0.2 " << endl << "//" << endl;
 	cout << "// Licence: GPL" << endl << "//" << endl;
 	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
 
@@ -81,7 +81,7 @@ void CI::UIInterface() {
 	SetConsoleTextAttribute(hConsole, 4);
 	cout << "///////////////////////////////////////////////////" << endl;
 	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.1 ALPHA" << endl << "//" << endl;
+	cout << "// Version 0.2" << endl << "//" << endl;
 	cout << "// Licence: GPL" << endl << "//" << endl;
 	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
 
@@ -235,7 +235,7 @@ void CI::GTweakInterface(string name,string status,char EnabelExtraComments,stri
 	SetConsoleTextAttribute(hConsole, 4);
 	cout << "///////////////////////////////////////////////////" << endl;
 	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.1 ALPHA" << endl << "//" << endl;
+	cout << "// Version 0.2" << endl << "//" << endl;
 	cout << "// Licence: GPL" << endl << "//" << endl;
 	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
 	
