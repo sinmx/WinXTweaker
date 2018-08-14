@@ -16,6 +16,8 @@ public:
 	//Increase taskbar transparency
 	void UseOLEDTaskbarTransparency(char options = 'e');
 
+	//Makes the lockscreen image a solid color
 	void LockScreen_Solid_Background(char options = 'e');
-	
+
+	void No_Shortcut_Arrows(char options = 'e');
 };
