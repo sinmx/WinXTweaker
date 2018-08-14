@@ -17,4 +17,7 @@ public:
 	void StartupInterface();
 	void UIInterface();
 	void GTweakInterface(string name, string status,char EnableComments ='n', string ExtraComments ="null");
+
+	//Special Interfaces
+	
 };

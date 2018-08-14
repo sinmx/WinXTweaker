@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <cstdarg>
+#include <winreg.h>
 
 using namespace std;
 using namespace winreg;
@@ -41,7 +42,7 @@ void CI::StartupInterface()
 	cout << "|               Main Menu               |"<< endl;
 	cout << "-----------------------------------------" << endl;
 	cout << "| 0: Exit                               |" << endl;
-        cout << "| 1: UI Tweaks                          |" << endl;
+    cout << "| 1: UI Tweaks                          |" << endl;
 	cout << "|---------------------------------------|" << endl << endl;
 
 	//Integer to store choice
@@ -86,17 +87,18 @@ void CI::UIInterface() {
 
 
 	SetConsoleTextAttribute(hConsole, 6);
-	cout << "-------------------------------------------------------------" << endl;
-	cout << "|                         UI Tweaks                         |" << endl;
-	cout << "-------------------------------------------------------------" << endl;
-	cout << "| E: Exit WXT                                               |" << endl;
-	cout << "| 0: Return to Main Menu                                    |" << endl;
-	cout << "| 1: View or Hide seconds in System clock (RESTART REQUIRED)|" << endl;
-	cout << "| 2: Increase Taskbar Transparency Level (RESTART REQUIRED) |" << endl;
-	cout << "|-----------------------------------------------------------|" << endl << endl;
+	cout << "-------------------------------------------------------------------" << endl;
+	cout << "|                         UI Tweaks                               |" << endl;
+	cout << "-------------------------------------------------------------------" << endl;
+	cout << "| E: Exit WXT                                                     |" << endl;
+	cout << "| 0: Return to Main Menu                                          |" << endl;
+	cout << "| 1: View or Hide seconds in System clock                         |" << endl;
+	cout << "| 2: Increase Taskbar Transparency Level                          |" << endl;
+	cout << "| 3: Change the Windows 10 logon screen to a solid color          |" << endl;
+	cout << "|-----------------------------------------------------------------|" << endl << endl;
 
 	//Integer to store choice
-    char Choice;
+	char Choice;
 
 	//Get choice
 	cout << "|Please enter your choice:";
@@ -104,7 +106,7 @@ void CI::UIInterface() {
 	cout << endl;
 
 	//Handles Choice
-	switch (Choice){
+	switch (Choice) {
 	case 'E':
 		exit(0);
 		break;
@@ -124,7 +126,8 @@ void CI::UIInterface() {
 			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)"
 		};
 		DWORD dwor = key.GetDwordValue(L"ShowSecondsInSystemClock");
-		cout << dwor;
+
+		//Creates the value if it doesn't already exists
 		if (dwor == 2) {
 			key.SetDwordValue(L"ShowSecondsInSystemClock", 0);
 			dwor = 0;
@@ -146,7 +149,7 @@ void CI::UIInterface() {
 		//Calls GTweakInterface,extra comments are not required so not given
 		GTweakInterface("Toggle_Seconds_System_Clock", Tweak_Status);
 	}
-		break;
+	break;
 
 	case '2':
 	{
@@ -157,9 +160,10 @@ void CI::UIInterface() {
 			HKEY_LOCAL_MACHINE,
 			LR"(SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced)"
 		};
-		
+
 		DWORD dwor = key.GetDwordValue(L"UseOLEDTaskbarTransparency");
-		cout << dwor;
+		
+		//Creates the value if it doesn't already exist
 		if (dwor == 2) {
 			key.SetDwordValue(L"UseOLEDTaskbarTransparency", 0);
 			dwor = 0;
@@ -182,13 +186,47 @@ void CI::UIInterface() {
 		GTweakInterface("UseOLEDTaskbarTransparency", Tweak_Status);
 		break;
 	}
-		
+	case '3':
+	{
+		//Sets Windows Logon Screen Image to a solid color
+		//Check if tweak is already enabled(getting the DWORD value from the registry),Winreg library <3
+
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Policies\Microsoft\Windows\System)"
+		};
+
+		DWORD dwor = key.GetDwordValue(L"DisableLogonBackgroundImage");
+		cout << dwor;
+		if (dwor == 2) {
+			key.SetDwordValue(L"DisableLogonBackgroundImage", 0);
+			dwor = 0;
+		}
+
+
+
+		//Sets status according to the DWORD(dw) value
+		if (dwor == 0) {
+			Tweak_Status = "Disabled";
+		}
+		else if (dwor == 1) {
+			Tweak_Status = "Enabled";
+		}
+		else {
+			throw "An error occured while reading the registry key.";
+		}
+
+		//Calls GTweakInterface,extra comments are not required so not given
+		GTweakInterface("LockScreen_Solid_Background", Tweak_Status,'y',"Changes the LockScreen image(only at the screen were you put your password in) to the system color.");
+		break;
+	}
 
 	}
 }
 
 //A lot of parameters eh ;-),but I assure you it's handy!
-void CI::GTweakInterface(string name,string status,char EnabelExtraComments,string ExtraComments){
+void CI::GTweakInterface(string name,string status,char EnabelExtraComments,string ExtraComments)
+{
 	//Convert status to new string
 	string TweakInterfaceStatus = status;
 	//Visible Stuff
@@ -222,8 +260,10 @@ void CI::GTweakInterface(string name,string status,char EnabelExtraComments,stri
 	}
 
 	if (EnabelExtraComments == 'y'){
-		cout << "|ExtraComments" << endl;
+		SetConsoleTextAttribute(hConsole, 12);
+		cout << endl << "|ExtraComments:" << endl;
 		cout << ExtraComments << endl;
+		SetConsoleTextAttribute(hConsole, 11);
 	}
 	if (TweakInterfaceStatus == "Enabled") {
 		cout << endl << "|Do you want to disable the " << name << " tweak?" << endl;
@@ -262,6 +302,5 @@ void CI::GTweakInterface(string name,string status,char EnabelExtraComments,stri
 	}
 	
 }
-
 
 

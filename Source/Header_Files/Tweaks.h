@@ -15,4 +15,7 @@ public:
 
 	//Increase taskbar transparency
 	void UseOLEDTaskbarTransparency(char options = 'e');
+
+	void LockScreen_Solid_Background(char options = 'e');
+	
 };

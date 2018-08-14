@@ -11,7 +11,6 @@ using namespace winreg;
 //Tweak Handler!IMPORTANT!,Info in README
 //The EnableOrDisable char can have these values('e'=enabel,'d'=disabel)
 void Tweaks::Tweak_Handler(string name,char EnableOrDisable) {
-	//I had a strange error, so I added this line
 	
     
 	//switch is not possible on a string :'(
@@ -37,6 +36,17 @@ void Tweaks::Tweak_Handler(string name,char EnableOrDisable) {
 			UseOLEDTaskbarTransparency('d');
 		}
 	}
+	
+	//Change LockScreenImage to a solid color
+	else if (name == "LockScreen_Solid_Background") {
+		if (EnableOrDisable == 'e') {
+			LockScreen_Solid_Background('e');
+		}
+		else {
+			LockScreen_Solid_Background('d');
+		}
+	}
+	
 }
 
 
@@ -82,3 +92,17 @@ void Tweaks::UseOLEDTaskbarTransparency(char options){
 	}
 }
 
+void Tweaks::LockScreen_Solid_Background(char options) {
+	if (options == 'e') {
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Policies\Microsoft\Windows\System)" };
+		key.SetDwordValue(L"DisableLogonBackgroundImage", 1);
+	}
+	else if (options == 'd') {
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Policies\Microsoft\Windows\System)" };
+		key.SetDwordValue(L"DisableLogonBackgroundImage", 0);
+	}
+}
