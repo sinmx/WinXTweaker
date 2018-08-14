@@ -13,7 +13,7 @@ private:
 	DWORD dwor;
 public:
 	CI();
-	void ClearScreen();
+	
 	void StartupInterface();
 	void UIInterface();
 	void GTweakInterface(string name, string status,char EnableComments ='n', string ExtraComments ="null");
