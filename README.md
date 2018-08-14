@@ -52,7 +52,7 @@ My intention of this tool was to make it free and opensource, so contribution wo
 
 
 ## The Tweak List
-_There are currently 2 tweaks in WXT_
+_There are currently 3 tweaks in WXT_
 
 
 ### UI_Tweaks:
@@ -61,3 +61,6 @@ This tweak enables the seconds in the System clock.
 
 * Increase Taskbar Transparency Level(Restart required)
 This tweak makes the taskbar transparent.
+
+* LockScreen Solid Color(Restart required,oviously)  
+  Sets Windows Logon Screen Image to a solid color(Only works at the input password screen)
