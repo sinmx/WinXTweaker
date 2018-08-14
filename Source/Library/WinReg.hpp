@@ -845,7 +845,7 @@ inline std::wstring RegKey::GetStringValue(const std::wstring& valueName)
     );
     if (retCode != ERROR_SUCCESS)
     {
-        throw RegException{ "Cannot get size of string value: RegGetValue failed.", retCode };
+        return L"ERROR";
     }
 
     // Allocate a string of proper size.
