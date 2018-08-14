@@ -6,5 +6,5 @@ class WXT {
 public:
 	WXT();
 	void Start();
-	
+	void ReloadExplorer();
  };
