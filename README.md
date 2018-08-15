@@ -1,5 +1,6 @@
 # WinXTweaker
 # Version 0.2(Executables in the _Releases_ tab)
+# List of all tweaks are available in the Wiki page!
 
 ## An introduction/story
  We all now the Windows OS(perhaps you're maybe reading this sentence on it).  
@@ -51,19 +52,8 @@ My intention of this tool was to make it free and opensource, so contribution wo
 * **Make sure to read the Wiki(Under Construction), for easy steps to understand and contribute to my code.**  
 
 
-## The Tweak List
-_There are currently 4 tweaks in WXT_
-
-
-### UI_Tweaks:
-* Show Seconds In System Clock  
-This tweak enables the seconds in the System clock.
-
-* Increase Taskbar Transparency Level  
-This tweak makes the taskbar transparent.
-
-* LockScreen Solid Color(Restart required,oviously)  
-  Sets Windows Logon Screen Image to a solid color(Only works at the input password screen)
+ 
   
-* Remove arrow icon's from shortcuts  
-  Removes the little arrow icon from shortcuts on the Windows desktop,makes it look a lot cleaner
+ 
+  
+  
