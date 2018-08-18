@@ -12,7 +12,7 @@ private:
 	string Tweak_Status;
 	DWORD dwor;
 public:
-	CI();
+	CI(string redirect);
 	
 	void StartupInterface();
 	void UIInterface();

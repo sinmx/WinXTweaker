@@ -33,8 +33,14 @@ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 ////////////////////////
 
 //Ctor starts Startupinterface
-CI::CI() {
-	StartupInterface();
+CI::CI(string redirect) {
+	if (redirect == "StartupInterface") {
+		StartupInterface();
+	}
+	else if (redirect == "UITweakInterface") {
+		UIInterface();
+	}
+	
 }
 
 
@@ -51,20 +57,30 @@ void CI::StartupInterface()
 	//Color's the output
 	SetConsoleTextAttribute(hConsole, 4);
 
-	cout << "///////////////////////////////////////////////////" << endl;
-	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.2 " << endl << "//" << endl;
-	cout << "// Licence: MIT" << endl << "//" << endl;
-	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
+	/*Colors the text*/
+	SetConsoleTextAttribute(hConsole, 2);
+	
+	cout <<  "____________________________________________________________________________ " << endl;
+	cout << "|                             WinXTweaker                                    |" << endl;
+	cout << "|                             Version 0.2                                    |" << endl;
+	cout << "|                             Licence: MIT                                   |" << endl;
+	cout << "|____________________________________________________________________________|" << endl << endl << endl;
 
-	SetConsoleTextAttribute(hConsole, 6);
+	SetConsoleTextAttribute(hConsole, 3);
+	cout << " ________________________________________ " << endl;
+	cout << "|               ";
 
-	cout << "-----------------------------------------" << endl;
-	cout << "|               Main Menu               |"<< endl;
-	cout << "-----------------------------------------" << endl;
-	cout << "| 0: Exit                               |" << endl;
-    cout << "| 1: UI Tweaks                          |" << endl;
-	cout << "|---------------------------------------|" << endl << endl;
+	//changing box title color
+	SetConsoleTextAttribute(hConsole, 7);
+	cout << "Main Menu";
+	
+	SetConsoleTextAttribute(hConsole, 3);
+	cout << "               |" << endl;
+	cout << "| 0: Exit WXT                           |" << endl;
+	cout << "| 1: UI Tweaks Menu                     |" << endl;
+	cout << "|_______________________________________|" << endl << endl;
+
+
 
 	//Integer to store choice
 	int Choice;
@@ -105,29 +121,36 @@ void CI::UIInterface() {
 	//Does what it says
 	system("CLS");
 
-	//Visible part//
+	//Visible part
+	SetConsoleTextAttribute(hConsole, 2);
+	
+	cout <<  "____________________________________________________________________________" << endl;
+	cout << "|                             WinXTweaker                                    |" << endl;
+	cout << "|                             Version 0.2                                    |" << endl;
+	cout << "|                             Licence: MIT                                   |" << endl;
+	cout << "|____________________________________________________________________________|" << endl << endl << endl;
 
-	SetConsoleTextAttribute(hConsole, 4);
 
-	cout << "///////////////////////////////////////////////////" << endl;
-	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.2" << endl << "//" << endl;
-	cout << "// Licence: MIT" << endl << "//" << endl;
-	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
+	SetConsoleTextAttribute(hConsole, 3);
+	cout << " ____________________________________________________________ " << endl;
+	cout << "|                       ";
+
+	//Setting menu title color
+	SetConsoleTextAttribute(hConsole, 7);
+	cout << "UI Tweaks Menu";
+
+	SetConsoleTextAttribute(hConsole, 3);
+	cout << "                      |" << endl;
+
+	cout << "| E: Exit WXT                                               |" << endl;
+	cout << "| 0: Return to Main Menu                                    |" << endl;
+	cout << "| 1: View or Hide seconds in System clock                   |" << endl;
+	cout << "| 2: Increase Taskbar Transparency Level                    |" << endl;
+	cout << "| 3: Change the Windows 10 logon screen to a solid color    |" << endl;
+	cout << "| 4: Remove Shortcut Arrow                                  |" << endl;
+	cout << "|___________________________________________________________|" << endl << endl << endl;
 
 
-	SetConsoleTextAttribute(hConsole, 6);
-
-	cout << "-------------------------------------------------------------------" << endl;
-	cout << "|                         UI Tweaks                               |" << endl;
-	cout << "-------------------------------------------------------------------" << endl;
-	cout << "| E: Exit WXT                                                     |" << endl;
-	cout << "| 0: Return to Main Menu                                          |" << endl;
-	cout << "| 1: View or Hide seconds in System clock                         |" << endl;
-	cout << "| 2: Increase Taskbar Transparency Level                          |" << endl;
-	cout << "| 3: Change the Windows 10 logon screen to a solid color          |" << endl;
-	cout << "| 4: Remove arrows from shortcuts                                 |" << endl;
-	cout << "|-----------------------------------------------------------------|" << endl << endl;
 
 	//Integer to store choice
 	char Choice;
@@ -326,19 +349,19 @@ void CI::GTweakInterface(string name,string status,char EnabelExtraComments,stri
 	//Visible Stuff
 	system("CLS");
 
-	SetConsoleTextAttribute(hConsole, 4);
+	SetConsoleTextAttribute(hConsole, 2);
 
-	cout << "///////////////////////////////////////////////////" << endl;
-	cout << "// WinXTweaker" << endl << "//" << endl;
-	cout << "// Version 0.2" << endl << "//" << endl;
-	cout << "// Licence: MIT" << endl << "//" << endl;
-	cout << "///////////////////////////////////////////////////" << endl << endl << endl;
-	
+	cout << "____________________________________________________________________________ " << endl;
+	cout << "|                             WinXTweaker                                    |" << endl;
+	cout << "|                             Version 0.2                                    |" << endl;
+	cout << "|                             Licence: MIT                                   |" << endl;
+	cout << "|____________________________________________________________________________|" << endl << endl << endl;
+
 	SetConsoleTextAttribute(hConsole, 6);
 
-	cout << "|----------------------------------------|" << endl;;
+	cout << " ________________________________________ " << endl;;
 	cout << "|    " << name << endl;
-	cout << "|----------------------------------------|" << endl;;
+	cout << "|________________________________________|" << endl;;
 	
 	SetConsoleTextAttribute(hConsole, 11);
 
@@ -385,7 +408,7 @@ void CI::GTweakInterface(string name,string status,char EnabelExtraComments,stri
 	char choice;
 	
 	//Asks choice
-	cout << "|Please enter your choice(y,n):";
+	cout << "|Please enter your choice(y/n):";
 	cin >> choice;
 	cout << endl;
 

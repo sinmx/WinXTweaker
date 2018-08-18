@@ -33,10 +33,12 @@ void Tweaks::Tweak_Handler(string name,char EnableOrDisable) {
 		if (EnableOrDisable == 'e') {
 
 			Toggle_Seconds_System_Clock('e');
+			
 		}
 		else {
 
 			Toggle_Seconds_System_Clock('d');
+			
 		}
 		
 	}
@@ -109,7 +111,8 @@ void Tweaks::Toggle_Seconds_System_Clock(char options)
 
 		key.SetDwordValue(L"ShowSecondsInSystemClock", 1);
 
-		system("taskkill /IM explorer.exe /F && explorer.exe");
+		
+		WXT::ReloadExplorer();
 
 	}
 
@@ -121,8 +124,8 @@ void Tweaks::Toggle_Seconds_System_Clock(char options)
 
 		key.SetDwordValue(L"ShowSecondsInSystemClock", 0);
 
-		system("taskkill /IM explorer.exe /F");
-		system("explorer.exe");
+		
+		WXT::ReloadExplorer();
 		
 	}
 	
@@ -139,8 +142,7 @@ void Tweaks::UseOLEDTaskbarTransparency(char options){
 
 		key.SetDwordValue(L"UseOLEDTaskbarTransparency", 1);
 		
-		system("taskkill /IM explorer.exe /F");
-		system("explorer.exe");
+		WXT::ReloadExplorer();
 
 	}
 
@@ -152,8 +154,8 @@ void Tweaks::UseOLEDTaskbarTransparency(char options){
 
 		key.SetDwordValue(L"UseOLEDTaskbarTransparency", 0);
 		
-		system("taskkill /IM explorer.exe /F");
-		system("explorer.exe");
+		
+		WXT::ReloadExplorer();
 
 	}
 }
@@ -193,8 +195,8 @@ void Tweaks::No_Shortcut_Arrows(char options){
 
 		key.SetStringValue(L"29", L"");
 
-		system("taskkill /IM explorer.exe /F");
-		system("explorer.exe");
+		
+		WXT::ReloadExplorer();
 	}
 
 	else if (options == 'd') {
@@ -206,8 +208,8 @@ void Tweaks::No_Shortcut_Arrows(char options){
 
 		key.DeleteValue(L"29");
 		
-		system("taskkill /IM explorer.exe /F");
-		system("explorer.exe");
+		
+		WXT::ReloadExplorer();
 	}
 
 }
