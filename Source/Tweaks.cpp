@@ -86,6 +86,59 @@ void Tweaks::Tweak_Handler(string name,char EnableOrDisable) {
 
 		}
 	}
+	else if (name == "UseWindows7VolumeUI") {
+		if (EnableOrDisable == 'e') {
+
+			UseWindows7VolumeUI('e');
+
+		}
+		else {
+
+			UseWindows7VolumeUI('d');
+
+		}
+	}
+
+	else if (name == "EnableHiddenSettingsMenu") {
+
+		if (EnableOrDisable == 'e') {
+
+			EnableHiddenSettingsMenu('e');
+
+		}
+		else {
+
+			EnableHiddenSettingsMenu('d');
+
+		}
+	}
+	else if (name == "RemoveOnedriveFromExplorer") {
+
+		if (EnableOrDisable == 'e') {
+
+			RemoveOnedriveFromExplorer('e');
+
+		}
+		else {
+
+			RemoveOnedriveFromExplorer('d');
+
+		}
+	}
+
+	else if (name == "PaintDesktopVersion") {
+
+		if (EnableOrDisable == 'e') {
+
+			PaintDesktopVersion('e');
+
+		}
+		else {
+
+			PaintDesktopVersion('d');
+
+		}
+	}
 }
 
 
@@ -212,4 +265,98 @@ void Tweaks::No_Shortcut_Arrows(char options){
 		WXT::ReloadExplorer();
 	}
 
+}
+
+void Tweaks::UseWindows7VolumeUI(char options){
+	if(options == 'e') {
+
+		RegKey key{
+			HKEY_LOCAL_MACHINE,
+			LR"(SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC)" };
+
+		key.SetDwordValue(L"EnableMtcUvc", 0);
+
+	}
+
+	else if (options == 'd') {
+
+	RegKey key{
+		HKEY_LOCAL_MACHINE,
+		LR"(SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC)" };
+
+	key.SetDwordValue(L"EnableMtcUvc", 1);
+
+	}
+}
+
+void Tweaks::EnableHiddenSettingsMenu(char options){
+
+	if (options == 'e') {
+
+		RegKey key{
+			HKEY_CURRENT_USER,
+			LR"(Control Panel)" };
+
+		key.SetDwordValue(L"EnableSamplesPage", 1);
+
+	}
+
+	else if (options == 'd') {
+
+		RegKey key{
+			HKEY_CURRENT_USER,
+			LR"(Control Panel)" };
+
+		key.SetDwordValue(L"EnableSamplesPage", 0);
+
+	}
+}
+
+void Tweaks::RemoveOnedriveFromExplorer(char options){
+	if (options == 'e') {
+
+		RegKey key{
+			HKEY_CLASSES_ROOT,
+			LR"(CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6})" };
+
+		key.SetDwordValue(L"System.IsPinnedToNameSpaceTree", 0);
+
+	}
+
+	else if (options == 'd') {
+
+		RegKey key{
+			HKEY_CLASSES_ROOT,
+			LR"(CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6})" };
+
+		key.SetDwordValue(L"System.IsPinnedToNameSpaceTree", 1);
+
+	}
+}
+
+void Tweaks::PaintDesktopVersion(char options){
+
+	if (options == 'e') {
+
+		RegKey key{
+			HKEY_CURRENT_USER,
+			LR"(Control Panel\Desktop)" };
+
+		key.SetDwordValue(L"PaintDesktopVersion", 1);
+
+		WXT::ReloadExplorer();
+
+	}
+
+	else if (options == 'd') {
+
+		RegKey key{
+			HKEY_CURRENT_USER,
+			LR"(Control Panel\Desktop)"};
+
+		key.SetDwordValue(L"PaintDesktopVersion", 0);
+
+		WXT::ReloadExplorer();
+
+	}
 }

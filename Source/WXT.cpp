@@ -10,17 +10,11 @@
 
 using namespace std;
 
-//Ctor:Sets up WinAxeTweaker
-WXT::WXT()
-{
 
-	SetConsoleTitle(L"WinXTweaker 0.2");
-	Start();
-}
 
 //This func is automatically called by Ctor and start the App(consoleinterface)
 void WXT::Start() {
-
+	SetConsoleTitle(L"WinXTweaker 0.2");
 	CI CI("StartupInterface");
 }
 

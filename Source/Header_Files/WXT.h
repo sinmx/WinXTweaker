@@ -4,8 +4,7 @@
 
 class WXT {
 public:
-	WXT();
-	void Start();
+	static void Start();
 	static void ReloadExplorer();
 	
 	
