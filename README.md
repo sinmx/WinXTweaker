@@ -1,4 +1,5 @@
 # WinXTweaker
+# This tool is being rewritten in Javascript with Electron!
 # Version 0.2(Executables in the _Releases_ tab)
 # List of all tweaks are available in the Wiki page!
 
